@@ -6,6 +6,7 @@ from pyautogui import scroll
 from tkinter import *
 import webview
 from word_detection import grab_images as gb
+import webbrowser
 import threading
 
 def main():
@@ -15,10 +16,13 @@ if __name__ == "__name__":
     main()
 
 def open_browser():
-    webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False)
+    # webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False)
     
-    webview.start()
-    webview.window.moveTo(640, 360)
+    # webview.start()
+    # webview.window.moveTo(640, 360)
+    url = "https://www.myworkday.com/wday/authgwy/tsys/login.htmld"
+    path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s --incognito"
+    webbrowser.open_new(url)
 
 def sign_in(images, test = False):
     ns.find_and_click(images[10])
