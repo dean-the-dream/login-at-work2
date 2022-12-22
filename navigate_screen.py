@@ -2,7 +2,6 @@ import webbrowser
 import time
 import os
 import creds
-import numpy as np
 import pyautogui as pg
 import time
 from email_integration import get_verify_code as get_code
