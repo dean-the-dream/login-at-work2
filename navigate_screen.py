@@ -108,6 +108,28 @@ def arrange_photos(img_list, *img_group):
         
     return result  
 
+click_points = {"Heartland":None,
+    "Check In": None,
+    "Check Out": None,
+    "Email": None,
+    "Continue": None,
+    "Login": None,
+    "Username": None,
+    "Password": None,
+    "Meal": None,
+    "OK": None,
+    "Out": None,
+    "Skip": None,
+    "Send to Email": None,
+    "Submit": None,
+    "Verification Code": None
+    }
+    
+screens = {
+    "Heartland": None,
+
+}
+
 # # check if workdaay remembers this device or not
 # def check_for_remember(remeber_device, login_page):
 #     remeber_device1 = f"./img/{remeber_device}"
