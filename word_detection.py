@@ -42,6 +42,12 @@ click_points = {"Heartland":None,
 
 screens = {
     "Heartland": None,
+    "Login": None,
+    "Email": None,
+    "Send to Email": None,
+    "Verification Code": None,
+    "Continue": None,
+
 
 }
 
@@ -65,23 +71,22 @@ def img_coordinates(tl,tr,br):
 
 def grab_images(screen_name, *image_list):
     # pass lanuguage arguments to the reader object
+    
     reader = easyocr.Reader(['en'], gpu=False)
+    # fill_dict(screens, "./img/full-screen-shots/")
 
     # capture the entire screen
     sleep(2)
     screenshot = pg.screenshot()
 
     # save the screenshot picture
-    screenshot.save(f"./img/full-screen-shots/{screen_name}.png")
-    # save the path for future reference
-    screens[screen_name] = f"./img/full-screen-shots/{screen_name}.png"
+    screenshot.save(screens[screen_name])
+
+    # get a list of coordinates for each word detected
+    list_of_words =  reader.readtext(screens[screen_name])
+    # print(list_of_words, "<<<<list of words")
 
     for i, image in enumerate(image_list):
-
-        # get a list of coordinates for each word detected
-        list_of_words =  reader.readtext(screens[screen_name])
-        # print(list_of_words, "<<<<list of words")
-
         # find the specific word you are looking for
         word_to_detect = image_list[i]
 
@@ -89,53 +94,6 @@ def grab_images(screen_name, *image_list):
         current_word = list(filter(lambda x: x[1] == word_to_detect, list_of_words))[0][0]
         print(current_word[0], "<<< current_word")
         image = ImageGrab.grab(bbox = (current_word[0][0], current_word[0][1], current_word[2][0], current_word[2][1]))
-        image.save(f"./img/{word_to_detect}.png")
-        click_points[word_to_detect] = f"./img/{word_to_detect}.png"
+        image.save(click_points[image_list[i]])
+
         print(click_points)
-        find_and_click(click_points[word_to_detect])
-  
-
-
-    
-
-# find_and_click("Heartland")
-# find_and_click("Username")
-# cnp(un)
-# find_and_click("Password")
-# cnp(password)
-# find_and_click("Login")
-# find_and_click("Email")
-# find_and_click("Send to Email")
-# pg.press("tab")
-# cnp(verify())
-# find_and_click("Continue")
-
-
-# capture the entire screen
-# screenshot = pg.screenshot()
-
-# # save the screenshot picture
-# screenshot.save("./img/screenshot.png")
-
-# # get a list of coordinates for each word detected
-# list_of_words =  reader.readtext("./img/screenshot.png")
-# # print(list_of_words, "<<<<list of words")
-
-# # find the specific word you are looking for
-# word_to_detect = "Heartland" 
-# current_word = list(filter(lambda x: x[1] == word_to_detect, list_of_words))[0]
-# print(current_word[0], "<<< current_word")
-
-
-
-# create an immage object
-# screenshot_obj = cv2.imread("./img/screenshot.png")
-# img = cv2.line(screenshot_obj, (233, 549), (307, 549 ),(255,0,0),2)
-
-
-
-
-# cv2.imshow("window", screenshot_obj)
-# cv2.waitKey(0)
-
-

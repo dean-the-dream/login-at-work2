@@ -2,12 +2,14 @@
 # This module contains the procedurse to sign in or out
 ###############################################################################################
 import navigate_screen as ns
-from pyautogui import scroll, press, keyDown, keyUp
+from pyautogui import press
 from tkinter import *
 import webview
-from word_detection import grab_images
+from word_detection import grab_images, fill_dict, screens, click_points as cp
 import threading
 from time import sleep
+from creds import un, password
+from email_integration import get_verify_code
 
 def main():
     print()
@@ -90,8 +92,25 @@ def choose_mode():
     return log_mode
 
 def get_clicks():
+    fill_dict(screens, "./img/full-screen-shots/")
     grab_images("Heartland","Heartland")
-
+    ns.find_and_click(cp["Heartland"])
+    grab_images("Login","Username", "Password", "Login")
+    ns.find_and_click(cp["Username"])
+    ns.click_and_paste(un)
+    ns.find_and_click(cp["Password"])
+    ns.click_and_paste(password)
+    ns.find_and_click(cp["Login"])
+    grab_images("Email","Email")
+    ns.find_and_click(cp["Email"])
+    grab_images("Send to Email","Send to Email")
+    ns.find_and_click(cp["Send to Email"])
+    grab_images("Verification Code","Verification Code")
+    # ns.find_and_click(cp["Verification Code"])
+    press("tab")
+    ns.click_and_paste(get_verify_code())
+    grab_images("Continue","Continue")
+    ns.find_and_click(cp["Continue"])
 
 
 
