@@ -17,7 +17,10 @@ if __name__ == "__name__":
     main()
 
 
-
+def fill_dict(dict, img_path):
+    for key, value in dict.items():
+        name = key.replace(" ", "_")
+        dict[key] = f"{img_path}{name}.png"
 
 
 click_points = {"Heartland":None,
@@ -59,25 +62,6 @@ def img_coordinates(tl,tr,br):
     print(height, "height")
     return (top, left, width, height)
 
-# def find_and_click(image_name):
-#     # capture the entire screen
-#     sleep(2)
-#     screenshot = pg.screenshot()
-
-#     # save the screenshot picture
-#     screenshot.save(f"./img/full-screen-shots/{image_name}.png")
-
-#     # get a list of coordinate for each word detected
-#     list_of_words =  reader.readtext(f"./img/full-screen-shots/{image_name}.png")
-#     print(list_of_words, "<<<<list of words")
-
-#     # find the specific word you are looking for 
-#     current_word = list(filter(lambda x: image_name in x[1], list_of_words))[0]
-#     print(current_word[0], "<<< current_word")
-    
-
-#     pg.moveTo(img_center(current_word[0][0], current_word[0][1],current_word[0][2]))
-#     pg.click()
 
 def grab_images(screen_name, *image_list):
     # pass lanuguage arguments to the reader object

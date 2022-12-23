@@ -1,5 +1,6 @@
-from cv2 import imread, imshow, waitKey
 
-screen = "./img/full-screen-shots/Heartland.png"
-screenimg = imread(screen)
-imshow("screen", screenimg)
+from word_detection import fill_dict, click_points, screens
+
+
+fill_dict(click_points, "./img/")
+print(click_points)

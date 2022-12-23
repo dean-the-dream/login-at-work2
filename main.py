@@ -3,9 +3,10 @@ from navigate_screen import arrange_photos as sort_pics
 import email_integration as el
 import login_logout as logio
 from time import sleep
-
+from word_detection import fill_dict, click_points
 import threading
 
+fill_dict(click_points, "./img/")
 img_list =  os.listdir("./img")
 images = sort_pics(img_list, 'heartland_button.png', 'login_welcome.png', 'login_button.png', 'choose_email_auth.png', 'send_to_email.png', 'verify_code.png','continue_button.png', "remember_check_box.png", "global_pay_logo.png", "submit.png", "check_in.png", "check_out.png", "details.png", "ok.png", "meal.png", "out.png")
 
