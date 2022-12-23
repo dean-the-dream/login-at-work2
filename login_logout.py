@@ -21,8 +21,8 @@ def open_browser():
     # webview.start()
     # webview.window.moveTo(640, 360)
     url = "https://www.myworkday.com/wday/authgwy/tsys/login.htmld"
-    path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s --incognito"
-    webbrowser.open_new(url)
+    chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s --incognito'
+    webbrowser.get(chrome_path).open_new(url)
 
 def sign_in(images, test = False):
     ns.find_and_click(images[10])

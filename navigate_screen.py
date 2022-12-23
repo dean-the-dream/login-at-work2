@@ -10,13 +10,11 @@ from email_integration import get_verify_code as get_code
 #############################################################################################
 #This module contains all the methods to navigate to the main final workday landing page before signing in or out
 ###############################################################################################
-def open_browser():
-    url = "https://www.myworkday.com/wday/authgwy/tsys/login.htmld"
-    chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s --incognito"
-    webbrowser.get(chrome_path).open_new(url)
-    # webbrowser.open_new(url)
+# def open_browser():
 
-#funtion pastes a text wherever the cursor is currently located
+#     # webbrowser.open_new(url)
+
+# #funtion pastes a text wherever the cursor is currently located
 def click_and_paste(text):
 
     pg.click()
