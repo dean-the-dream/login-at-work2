@@ -90,7 +90,7 @@ def choose_mode():
     return log_mode
 
 def get_clicks():
-    grab_images("heartland","heartland")
+    grab_images("Heartland","Heartland")
 
 
 

@@ -34,7 +34,7 @@ def click_and_paste(text):
 # function to find images on the screen
 def locate_image(image_path):
     # create the path to the image in the images folder
-    image_path = f"./img/{image_path}"
+    # image_path = f"./img/{image_path}"
 
     # store the image in a variable
     image_location = pg.locateCenterOnScreen(image_path, confidence=.7) 
@@ -124,7 +124,7 @@ click_points = {"Heartland":None,
     "Submit": None,
     "Verification Code": None
     }
-    
+
 screens = {
     "Heartland": None,
 

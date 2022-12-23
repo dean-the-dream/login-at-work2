@@ -20,7 +20,7 @@ def thread2():
         case 3:
             logio.sign_out(images)
         case 4: 
-            logio.get.clicks
+            logio.get_clicks()
         case 5: 
             logio.sign_out(images, True)
     
