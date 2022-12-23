@@ -11,7 +11,8 @@ img_list =  os.listdir("./img")
 images = sort_pics(img_list, 'heartland_button.png', 'login_welcome.png', 'login_button.png', 'choose_email_auth.png', 'send_to_email.png', 'verify_code.png','continue_button.png', "remember_check_box.png", "global_pay_logo.png", "submit.png", "check_in.png", "check_out.png", "details.png", "ok.png", "meal.png", "out.png")
 
 def thread2():
-    mode = logio.choose_mode()
+    # mode = logio.choose_mode()
+    mode = 4
 
     match mode:
         case 1:

@@ -47,6 +47,7 @@ screens = {
     "Send to Email": None,
     "Verification Code": None,
     "Continue": None,
+    "Skip": None,
 
 
 }
@@ -84,7 +85,7 @@ def grab_images(screen_name, *image_list):
 
     # get a list of coordinates for each word detected
     list_of_words =  reader.readtext(screens[screen_name])
-    # print(list_of_words, "<<<<list of words")
+    print(list_of_words, "<<<<list of words")
 
     for i, image in enumerate(image_list):
         # find the specific word you are looking for

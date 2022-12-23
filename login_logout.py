@@ -2,14 +2,14 @@
 # This module contains the procedurse to sign in or out
 ###############################################################################################
 import navigate_screen as ns
-from pyautogui import press
+from pyautogui import press, keyDown, keyUp
 from tkinter import *
 import webview
 from word_detection import grab_images, fill_dict, screens, click_points as cp
 import threading
 from time import sleep
 from creds import un, password
-from email_integration import get_verify_code
+from email_integration import get_verify_code as get_code
 
 def main():
     print()
@@ -19,10 +19,12 @@ if __name__ == "__name__":
 
 def open_browser():
     def move(window):
-        # sleep(2)
-        window.move(200, 200)
-    window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False)
+        window.move(200, 100)
+    window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False, width=500, height=700)
 
+    # keyDown("winleft")
+    # press("d")
+    # keyUp("winleft")
     webview.start(move, window)
     
 def move_window():
@@ -105,12 +107,13 @@ def get_clicks():
     ns.find_and_click(cp["Email"])
     grab_images("Send to Email","Send to Email")
     ns.find_and_click(cp["Send to Email"])
-    grab_images("Verification Code","Verification Code")
-    # ns.find_and_click(cp["Verification Code"])
+    sleep(2)
     press("tab")
-    ns.click_and_paste(get_verify_code())
+    ns.click_and_paste(get_code())
     grab_images("Continue","Continue")
     ns.find_and_click(cp["Continue"])
+    grab_images("Skip","Skip")
+    ns.find_and_click(cp["Skip"])
 
 
 

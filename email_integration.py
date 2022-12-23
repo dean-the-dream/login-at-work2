@@ -90,7 +90,7 @@ def get_verify_code():
 
     # get the verification code from the  subject of the message
     message = get_message()
-    code=message.get("Subject")[24:30]
+    code = message.get("Subject")[24:30]
     return code
 
 
