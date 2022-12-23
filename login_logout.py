@@ -2,11 +2,12 @@
 # This module contains the procedurse to sign in or out
 ###############################################################################################
 import navigate_screen as ns
-from pyautogui import scroll
+from pyautogui import scroll, press, keyDown, keyUp
 from tkinter import *
 import webview
-from word_detection import grab_images as gb
+from word_detection import grab_images
 import threading
+from time import sleep
 
 def main():
     print()
@@ -15,10 +16,33 @@ if __name__ == "__name__":
     main()
 
 def open_browser():
-    webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False)
+    def move(window):
+        # sleep(2)
+        window.move(200, 200)
+    window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False)
+
+    webview.start(move, window)
     
-    webview.start()
-    webview.window.moveTo(640, 360)
+def move_window():
+    # print("buttons are pressing")
+    # keyDown("winleft")
+    # press("d")
+    # keyUp("winleft")
+    # print("buttons stopped pressing")
+    # print("buttons are pressing")
+    # keyDown("winleft")
+    # keyDown("shift")
+    # press("left")
+    # press("left")
+    # keyUp("winleft")
+    # keyUp("shift")
+    # print("buttons stopped pressing")
+    
+    # keyDown("winleft")
+    # press("left")
+    # keyUp("winleft")
+    webview.window
+    
 
 def sign_in(images, test = False):
     ns.find_and_click(images[10])
@@ -52,6 +76,23 @@ def get_to_landing_page(images):
     print("Completed step 7")
     ns.find_and_click(images[9])
     print("completed step 9")
+
+
+def choose_mode():
+    log_mode = int(input("""What Would You like to do?
+    1) Login
+    2) Logout for Lunch
+    3) Logout
+    4) Read Screen
+    5) Test
+    
+    Enter Selection: """))
+    return log_mode
+
+def get_clicks():
+    grab_images("heartland","heartland")
+
+
 
 
 # def get_to_landing_page(images):
