@@ -10,14 +10,11 @@ from email_integration import get_verify_code as get_code
 #############################################################################################
 #This module contains all the methods to navigate to the main final workday landing page before signing in or out
 ###############################################################################################
-# def open_browser():
 
-#     # webbrowser.open_new(url)
+#funtion pastes a text wherever the cursor is currently located
+def click_and_paste(text, click = True):
 
-# #funtion pastes a text wherever the cursor is currently located
-def click_and_paste(text):
-
-    pg.click()
+    pg.click() if click else None
     command = 'echo ' + text.strip() + '| clip'
     os.system(command)
 
@@ -32,10 +29,10 @@ def click_and_paste(text):
 # function to find images on the screen
 def locate_image(image_path):
     # create the path to the image in the images folder
-    image_path = f"./img/{image_path}"
+    # image_path = f"./img/{image_path}"
 
     # store the image in a variable
-    image_location = pg.locateCenterOnScreen(image_path, confidence=.7) 
+    image_location = pg.locateCenterOnScreen(image_path, confidence=.8) 
     print(image_location, "location")
     # wait for thirty second while python finds the center of the button
     timeout = time.time() + 30
@@ -70,19 +67,21 @@ def find_and_click(image_path, delay=0):
     # ################################################################################
 
 # enter username and password inworkday
-def workday_login(image_path):
-    center_image = locate_image(image_path)
+def workday_login(username, password, login):
+    username = locate_image(username)
+    password = locate_image(password)
+    login = locate_image(login)
 
     # move the mouse to the center of username input box
-    pg.moveTo(center_image[0], center_image[1] + 96)
+    pg.moveTo(username)
     click_and_paste(creds.un)
 
     # move the mouse to the center of password input box
-    pg.moveTo(center_image[0], center_image[1] + 156)
+    pg.moveTo(password)
     click_and_paste(creds.password)
     
     #click on login button
-    pg.moveTo(center_image[0], center_image[1] + 216)
+    pg.moveTo(login)
     pg.click()
 
 # copy and past verify code
@@ -106,27 +105,6 @@ def arrange_photos(img_list, *img_group):
         
     return result  
 
-click_points = {"Heartland":None,
-    "Check In": None,
-    "Check Out": None,
-    "Email": None,
-    "Continue": None,
-    "Login": None,
-    "Username": None,
-    "Password": None,
-    "Meal": None,
-    "OK": None,
-    "Out": None,
-    "Skip": None,
-    "Send to Email": None,
-    "Submit": None,
-    "Verification Code": None
-    }
-    
-screens = {
-    "Heartland": None,
-
-}
 
 # # check if workdaay remembers this device or not
 # def check_for_remember(remeber_device, login_page):
