@@ -22,9 +22,9 @@ def thread2():
         case 3:
             logio.sign_out(images)
         case 4: 
-            logio.get_clicks()
+            logio.get_to_landing_page(click_points)
         case 5: 
-            logio.sign_out(images, True)
+            logio.sign_out(images, test=True)
     
 
 

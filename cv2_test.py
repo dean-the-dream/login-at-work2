@@ -2,6 +2,8 @@ from screeninfo import get_monitors
 from word_detection import grab_images, click_points, fill_dict
 from pyautogui import press, keyDown, keyUp, scroll, click
 from time import sleep
+from navigate_screen import find_and_click
+from login_logout import get_to_landing_page as navigate
 
 # monitor = 0
 # for m in get_monitors():
@@ -22,9 +24,11 @@ from time import sleep
 # print(screen_y)
 
 # screens = wd.screens
-# fill_dict(click_points, "./img/")
-# grab_images("Send","Send", instance = 2, search="vague")
-sleep(3)
-click()
-print("The mouse has clicked")
-scroll(-500)
+fill_dict(click_points, "./img/")
+from login_logout import get_to_landing_page as navigate
+# find_and_click(click_points["Check Out"])
+# # grab_images("Send","Send", instance = 2, search="vague")
+# sleep(3)
+# click()
+# print("The mouse has clicked")
+# scroll(-500)

@@ -37,6 +37,7 @@ In order to login or logout at work I have to perform several step, go through a
 * Code needs more copious notes, explaining my thought process
 * the get_clicks method needs it's own module
 * code needs to be refactored
+* handling errors (what happens if a file isn't available)
 
 
 
