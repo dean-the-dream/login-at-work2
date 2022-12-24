@@ -2,7 +2,7 @@
 # This module contains the procedurse to sign in or out
 ###############################################################################################
 import navigate_screen as ns
-from pyautogui import press, keyDown, keyUp
+from pyautogui import press, keyDown, keyUp, scroll, click
 from tkinter import *
 import webview
 from word_detection import grab_images, fill_dict, screens, click_points as cp
@@ -105,14 +105,23 @@ def get_clicks():
     ns.find_and_click(cp["Login"])
     grab_images("Email","Email")
     ns.find_and_click(cp["Email"])
-    grab_images("Send to Email","Send to Email")
-    ns.find_and_click(cp["Send to Email"])
+    grab_images("Send t0 Email","Send t0 Email")
+    ns.find_and_click(cp["Send t0 Email"])
     sleep(2)
     press("tab")
-    ns.click_and_paste(get_code())
+    ns.click_and_paste(get_code(), click = False)
     grab_images("Continue","Continue")
     ns.find_and_click(cp["Continue"])
     grab_images("Skip","Skip")
+    ns.find_and_click(cp["Skip"])
+    sleep(2)
+    click()
+    print("The mouse has clicked")
+    scroll(30)
+    print("The mouse has scrolled up")
+    scroll(-30)
+    print("The mouse has scrolled down")
+    grab_images("Welcome","Check In", "Check Out")
     ns.find_and_click(cp["Skip"])
 
 

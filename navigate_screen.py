@@ -17,9 +17,9 @@ def open_browser():
     # webbrowser.open_new(url)
 
 #funtion pastes a text wherever the cursor is currently located
-def click_and_paste(text):
+def click_and_paste(text, click = True):
 
-    pg.click()
+    pg.click() if click else None
     command = 'echo ' + text.strip() + '| clip'
     os.system(command)
 
