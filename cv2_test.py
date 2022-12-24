@@ -5,6 +5,7 @@ from time import sleep
 from navigate_screen import find_and_click
 from login_logout import get_to_landing_page as navigate
 import keyboard
+import os
 
 # monitor = 0
 # for m in get_monitors():
@@ -25,11 +26,11 @@ import keyboard
 # print(screen_y)
 
 # screens = wd.screens
-fill_dict(click_points, "./img/")
+# fill_dict(click_points, "./img/")
 # from login_logout import get_to_landing_page as navigate
 
-grab_images("Done","Done")
-find_and_click(click_points["Check Out"])
+# grab_images("Done","Done")
+# find_and_click(click_points["Check Out"])
 # sleep(3)
 # click()
 # print("The mouse has clicked")
@@ -41,5 +42,6 @@ find_and_click(click_points["Check Out"])
 #         kill_thread = True
 #         print(kill_thread)
 #         break
-        
+# os.makedirs("C:/Program Files/Logio")   
+os.makedirs("C:/Coding/Logio/")
         

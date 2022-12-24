@@ -7,6 +7,7 @@ from creds import un, password
 from time import sleep
 from email_integration import get_message as verify
 import pyscreenshot as ImageGrab
+from creds import main_dir
 
 
 
@@ -75,7 +76,7 @@ def grab_images(screen_name, *image_list,  search = "explicit", instance = 1):
     # pass lanuguage arguments to the reader object
     
     reader = easyocr.Reader(['en'], gpu=False)
-    fill_dict(screens, "./img/full-screen-shots/")
+    fill_dict(screens, f"{main_dir}img/full-screen-shots/")
 
     # capture the entire screen
     sleep(2)

@@ -2,6 +2,8 @@ from word_detection import grab_images, fill_dict, screens, click_points as cp
 import navigate_screen as ns
 from time import sleep
 import os
+from creds import main_dir
+
 
 
 def get_clicks():
@@ -30,8 +32,8 @@ def get_clicks():
     grab_images("Punch","Out","Meal", "OK")
 
 def make_dir():
-    os.makedirs("./img/")
-    os.makedirs("./img/full-screen-shots")
+    os.makedirs(f"{main_dir}img/")
+    os.makedirs(f"{main_dir}img/full-screen-shots")
 # if not complete_capture:
 
     

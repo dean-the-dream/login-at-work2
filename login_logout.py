@@ -7,9 +7,10 @@ from tkinter import *
 import webview
 from word_detection import grab_images, fill_dict, screens, click_points as cp
 from time import sleep
-from creds import un, password
+from creds import un, password, main_dir
 from email_integration import get_verify_code as get_code
 from screeninfo import get_monitors
+from creds import main_dir
 
 
 def main():
@@ -65,7 +66,7 @@ def choose_mode():
     return log_mode
 
 def get_clicks():
-    fill_dict(screens, "./img/full-screen-shots/")
+    fill_dict(screens, f"{main_dir}img/full-screen-shots/")
     grab_images("Heartland","Heartland")
     ns.find_and_click(cp["Heartland"])
     grab_images("Login","Username", "Password", "Login")
