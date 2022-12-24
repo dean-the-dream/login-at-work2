@@ -103,15 +103,14 @@ def get_clicks():
     ns.find_and_click(cp["Continue"])
     grab_images("Skip","Skip")
     ns.find_and_click(cp["Skip"])
+    # sleep(2)
+    # click()
+    scroll(-300)
     sleep(2)
-    click()
-    print("The mouse has clicked")
-    scroll(100)
-    print("The mouse has scrolled up")
-    # scroll(-30)
-    print("The mouse has scrolled down")
     grab_images("Welcome","Check In", "Check Out")
-    ns.find_and_click(cp["Skip"])
+    ns.find_and_click(cp["Check Out"])
+    grab_images("Punch","Out","Meal", "OK")
+    
 
 
 
