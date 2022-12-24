@@ -6,15 +6,26 @@ from time import sleep
 from word_detection import fill_dict, click_points
 import threading
 import keyboard
+from login_setup import make_dir
 
-fill_dict(click_points, "./img/")
-img_list =  os.listdir("./img")
-images = sort_pics(img_list, 'heartland_button.png', 'login_welcome.png', 'login_button.png', 'choose_email_auth.png', 'send_to_email.png', 'verify_code.png','continue_button.png', "remember_check_box.png", "global_pay_logo.png", "submit.png", "check_in.png", "check_out.png", "details.png", "ok.png", "meal.png", "out.png")
+
+
+
+# images = sort_pics(img_list, 'heartland_button.png', 'login_welcome.png', 'login_button.png', 'choose_email_auth.png', 'send_to_email.png', 'verify_code.png','continue_button.png', "remember_check_box.png", "global_pay_logo.png", "submit.png", "check_in.png", "check_out.png", "details.png", "ok.png", "meal.png", "out.png")
 
 def thread2():
+
+    try:
+        fill_dict(click_points, "./img/")
+        img_list =  os.listdir("./img")
+    except FileNotFoundError:
+        print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
+        make_dir()
+        logio.get_clicks()
+        
+
+ 
     mode = logio.choose_mode()
-
-
     if not mode == 4:
         logio.get_to_landing_page(click_points)
         match mode:
@@ -32,7 +43,7 @@ def thread2():
         logio.get_clicks(click_points)
     else:
         print("Invalid input, try again")
-
+ 
     
 
 
