@@ -35,7 +35,7 @@ click_points = {"Heartland":None,
     "OK": None,
     "Out": None,
     "Skip": None,
-    "Send t0 Email": None,
+    "Send": None,
     "Submit": None,
     "Verification Code": None,
     "Check In": None,
@@ -49,7 +49,7 @@ screens = {
     "Verification Code": None,
     "Continue": None,
     "Skip": None,
-    "Send t0 Email": None,
+    "Send": None,
     "Welcome": None,
 
 
@@ -74,9 +74,10 @@ def img_coordinates(tl,tr,br):
     return (top, left, width, height)
 
 
-def grab_images(screen_name, *image_list,  search = "explicit"):
+def grab_images(screen_name, *image_list, instance = 1):
+
+    instance = instance - 1
     # pass lanuguage arguments to the reader object
-    
     reader = easyocr.Reader(['en'], gpu=False)
     # fill_dict(screens, "./img/full-screen-shots/")
 
@@ -96,11 +97,7 @@ def grab_images(screen_name, *image_list,  search = "explicit"):
         word_to_detect = image_list[i]
 
         # produces a list of the coordinates, surrounding the current word
-        current_word = list(filter(lambda x: 
-        (x[1] in word_to_detect)
-        if search == "vauge"
-        else x[1] == word_to_detect
-        , list_of_words))[0][0]
+        current_word = list(filter(lambda x: x[1] == word_to_detect, list_of_words))[instance][0]
         print(current_word[0], "<<< current_word")
         image = ImageGrab.grab(bbox = (current_word[0][0], current_word[0][1], current_word[2][0], current_word[2][1]))
         image.save(click_points[image_list[i]])

@@ -6,10 +6,11 @@ from pyautogui import press, keyDown, keyUp, scroll, click
 from tkinter import *
 import webview
 from word_detection import grab_images, fill_dict, screens, click_points as cp
-import threading
 from time import sleep
 from creds import un, password
 from email_integration import get_verify_code as get_code
+from screeninfo import get_monitors
+
 
 def main():
     print()
@@ -18,34 +19,22 @@ if __name__ == "__name__":
     main()
 
 def open_browser():
-    def move(window):
-        window.move(200, 100)
-    window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", on_top=True, resizable=False, width=500, height=700)
+    monitors = get_monitors
 
-    # keyDown("winleft")
-    # press("d")
-    # keyUp("winleft")
-    webview.start(move, window)
-    
-def move_window():
-    # print("buttons are pressing")
-    # keyDown("winleft")
-    # press("d")
-    # keyUp("winleft")
-    # print("buttons stopped pressing")
-    # print("buttons are pressing")
-    # keyDown("winleft")
-    # keyDown("shift")
-    # press("left")
-    # press("left")
-    # keyUp("winleft")
-    # keyUp("shift")
-    # print("buttons stopped pressing")
-    
-    # keyDown("winleft")
-    # press("left")
-    # keyUp("winleft")
-    webview.window
+    def move(window, background):
+        background.move(0,0)
+        background.resize(1920, 1080)
+        # sleep(1)
+        window.move(610, 50)
+        window.resize(700, 980)
+        # window.show()
+
+    background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True)
+    window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
+
+    # webview.start()
+    webview.start(move,(window,background))
+
     
 
 def sign_in(images, test = False):
@@ -105,8 +94,8 @@ def get_clicks():
     ns.find_and_click(cp["Login"])
     grab_images("Email","Email")
     ns.find_and_click(cp["Email"])
-    grab_images("Send t0 Email","Send t0 Email")
-    ns.find_and_click(cp["Send t0 Email"])
+    grab_images("Send","Send", instance = 2)
+    ns.find_and_click(cp["Send"])
     sleep(2)
     press("tab")
     ns.click_and_paste(get_code(), click = False)
@@ -117,9 +106,9 @@ def get_clicks():
     sleep(2)
     click()
     print("The mouse has clicked")
-    scroll(30)
+    scroll(100)
     print("The mouse has scrolled up")
-    scroll(-30)
+    # scroll(-30)
     print("The mouse has scrolled down")
     grab_images("Welcome","Check In", "Check Out")
     ns.find_and_click(cp["Skip"])
