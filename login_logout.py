@@ -94,7 +94,7 @@ def get_clicks():
     ns.find_and_click(cp["Login"])
     grab_images("Email","Email")
     ns.find_and_click(cp["Email"])
-    grab_images("Send","Send", instance = 2)
+    grab_images("Send","Send", instance = 2, search="vague")
     ns.find_and_click(cp["Send"])
     sleep(2)
     press("tab")
