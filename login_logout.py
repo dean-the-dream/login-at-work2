@@ -26,7 +26,7 @@ def open_browser():
         background.resize(1920, 1080)
         # sleep(1)
         window.move(610, 50)
-        window.resize(800, 800)
+        window.resize(800, 1000)
         # window.show()
 
     background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True)
@@ -38,37 +38,19 @@ def open_browser():
     
 
 def sign_in(images, test = False):
-    ns.find_and_click(images[10])
-    ns.find_and_click(images[12])
-    scroll(-20)
-    None if test else ns.find_and_click(images[13])
+    ns.find_and_click(images["Check In"])
+    None if test else ns.find_and_click(images["OK"])
 
 def lunch_sign_out(images, test = False):
-    ns.find_and_click(images[11])
-    ns.find_and_click(images[14])
-    scroll(-20)
-    None if test else ns.find_and_click(images[13])
+    ns.find_and_click(images["Check Out"])
+    ns.find_and_click(images["Meal"])
+    None if test else ns.find_and_click(images["OK"])
     
 
 def sign_out(images, test = False):
-    ns.find_and_click(images[11])
-    ns.find_and_click(images[15])
-    scroll(-20)
-    None if test else ns.find_and_click(images[13])
-
-def get_to_landing_page(images):
-    ns.find_and_click(images[0]) 
-    print(images[0])
-    ns.workday_login(images[1])
-    ns.find_and_click(images[2])
-    ns.find_and_click(images[3])
-    ns.find_and_click(images[4])
-    ns.enter_verify(images[5])
-    ns.find_and_click(images[6])
-    ns.find_and_click(images[7])
-    print("Completed step 7")
-    ns.find_and_click(images[9])
-    print("completed step 9")
+    ns.find_and_click(images["Check Out"])
+    ns.find_and_click(images["Out"])
+    None if test else ns.find_and_click(images["OK"])
 
 
 def choose_mode():
@@ -96,13 +78,12 @@ def get_clicks():
     ns.find_and_click(cp["Email"])
     grab_images("Send","Send", instance = 2, search="vague")
     ns.find_and_click(cp["Send"])
-    grab_images("Verification Code", "Verification Code", instance=3)
+    grab_images("Verification Code", "Verification Code")
     ns.enter_verify(cp["Verification Code"])
     grab_images("Continue","Continue")
     ns.find_and_click(cp["Continue"])
     grab_images("Skip","Skip")
     ns.find_and_click(cp["Skip"])
-    scroll(-300)
     sleep(2)
     grab_images("Welcome","Check In", "Check Out")
     ns.find_and_click(cp["Check Out"])
@@ -119,8 +100,5 @@ def get_to_landing_page(cp):
     ns.enter_verify(cp["Verification Code"])
     ns.find_and_click(cp["Continue"])
     ns.find_and_click(cp["Skip"])
-    scroll(-300)
-    ns.find_and_click(cp["Check Out"])
-    print("completed step 9")
-    grab_images("Punch","Out","Meal","OK")
-    ns.find_and_click(cp["Meal"])
+    sleep(2)
+    

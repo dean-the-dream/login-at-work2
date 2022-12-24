@@ -40,7 +40,9 @@ click_points = {"Heartland":None,
     "Submit": None,
     "Verification Code": None,
     "Check In": None,
-    "Check Out": None
+    "Check Out": None,
+    "Done": None,
+
     }
 
 screens = {
@@ -52,28 +54,20 @@ screens = {
     "Skip": None,
     "Send": None,
     "Welcome": None,
-    "Welcome": None,
-
-
-
+    "Punch": None,
+    "Done": None,
 }
 
-
-def img_center(tl,tr,br):
-    x_center = ((int(tr[0]) - int(tl[0])) // 2) + int(tl[0])
-    y_center = ((int(br[1])- int(tr[1])) // 2) + int(tr[1])
-    return (x_center, y_center)
-
-def img_coordinates(tl,tr,br):
-    top = tl[1]
-    print(top, "top")
-    left = tl[0]
-    print(left, "left")
-    width = (int(tr[0]) - int(tl[0]))
-    print(width, "width")
-    height = (int(br[1])- int(tr[1]))
-    print(height, "height")
-    return (top, left, width, height)
+# def img_coordinates(tl,tr,br):
+#     top = tl[1]
+#     print(top, "top")
+#     left = tl[0]
+#     print(left, "left")
+#     width = (int(tr[0]) - int(tl[0]))
+#     print(width, "width")
+#     height = (int(br[1])- int(tr[1]))
+#     print(height, "height")
+#     return (top, left, width, height)
 
 
 def grab_images(screen_name, *image_list,  search = "explicit", instance = 1):

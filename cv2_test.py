@@ -4,6 +4,7 @@ from pyautogui import press, keyDown, keyUp, scroll, click
 from time import sleep
 from navigate_screen import find_and_click
 from login_logout import get_to_landing_page as navigate
+import keyboard
 
 # monitor = 0
 # for m in get_monitors():
@@ -25,10 +26,20 @@ from login_logout import get_to_landing_page as navigate
 
 # screens = wd.screens
 fill_dict(click_points, "./img/")
-from login_logout import get_to_landing_page as navigate
-# find_and_click(click_points["Check Out"])
-# # grab_images("Send","Send", instance = 2, search="vague")
+# from login_logout import get_to_landing_page as navigate
+
+grab_images("Done","Done")
+find_and_click(click_points["Check Out"])
 # sleep(3)
 # click()
 # print("The mouse has clicked")
 # scroll(-500)
+# kill_thread = False
+# while True:
+#     if keyboard.is_pressed("q"):
+#         print("You pressed a button")
+#         kill_thread = True
+#         print(kill_thread)
+#         break
+        
+        
