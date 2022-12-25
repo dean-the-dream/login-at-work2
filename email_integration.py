@@ -28,7 +28,7 @@ def get_message():
     return message
 
 # check message for correct time
-def check_message(message, currentTime):
+def check_message(message, current_time):
 
     # get the date and time of the message
     email_time = get_message().get("Date")
@@ -60,30 +60,38 @@ def check_message(message, currentTime):
     datetime_object = datetime_object - timedelta(hours = delta)
 
     #if confirm the time to make sure the message was send after the function was run
-    if datetime_object < currentTime:
+    if datetime_object < current_time:
         return False
     else:
          return True
 
     # print(datetime_object)
-    # print(currentTime)
+    # print(current_time)
 
     # return True
 
+def get_time():
+        current_time = str(dt.now(timezone.utc))[:19]
+        current_time = dt.strptime(current_time, '%Y-%m-%d %H:%M:%S')
+        print(current_time)
+        return current_time
+
+
 # get the verify code from the email
-def get_verify_code():
+def get_verify_code(time):
     # login to email account
     my_mail.login(creds.emailun, creds.imapPW)
 
     # get the current time as a string
-    currentTime = str(dt.now(timezone.utc))[:19]
-    currentTime = dt.strptime(currentTime, '%Y-%m-%d %H:%M:%S')
-    print(currentTime)
+    if time:
+        current_time = time
+    else:
+        current_time = get_time()
 
     message = get_message()
     
     # check the inbox every 3 seconds until the correct email is found
-    while not check_message(message,currentTime):
+    while not check_message(message,current_time):
         message = get_message()
         time.sleep(3)
         print(message.get("Subject")[24:30])

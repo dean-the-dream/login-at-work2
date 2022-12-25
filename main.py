@@ -14,19 +14,9 @@ from creds import main_dir
 # images = sort_pics(img_list, 'heartland_button.png', 'login_welcome.png', 'login_button.png', 'choose_email_auth.png', 'send_to_email.png', 'verify_code.png','continue_button.png', "remember_check_box.png", "global_pay_logo.png", "submit.png", "check_in.png", "check_out.png", "details.png", "ok.png", "meal.png", "out.png")
 
 
-def thread2():
+def thread2(mode):
 
-    try:
-        fill_dict(click_points, f"{main_dir}img/")
-        img_list =  os.listdir(f"{main_dir}img/")
-    except FileNotFoundError:
-        print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
-        make_dir()
-        logio.get_clicks()
-        
-
- 
-    mode = logio.choose_mode()
+    
     if not mode == 4:
         logio.get_to_landing_page(click_points)
         match mode:
@@ -52,10 +42,20 @@ def thread2():
     # logio.get_to_landing_page(images)
 
 def main():
+    mode = logio.choose_mode()
+    try:
+        fill_dict(click_points, f"{main_dir}img/")
+        img_list =  os.listdir(f"{main_dir}img/")
+    except FileNotFoundError:
+        print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
+        logio.open_browser(mode)
+        make_dir()
+        logio.get_clicks()
    
-    start_login = threading.Thread(target=thread2)
+
+    start_login = threading.Thread(target=thread2, args = [mode])
     start_login.start()
-    logio.open_browser()
+    logio.open_browser(mode)
     while True:
         if keyboard.is_pressed("q"):
             print("You pressed a button")

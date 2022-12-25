@@ -8,7 +8,7 @@ import webview
 from word_detection import grab_images, fill_dict, screens, click_points as cp
 from time import sleep
 from creds import un, password, main_dir
-from email_integration import get_verify_code as get_code
+from email_integration import get_time
 from screeninfo import get_monitors
 from creds import main_dir
 
@@ -19,18 +19,21 @@ def main():
 if __name__ == "__name__":
     main()
 
-def open_browser():
+def open_browser(mode):
     monitors = get_monitors
 
     def move(window, background):
-        background.move(0,0)
-        background.resize(1920, 1080)
+        try:
+            background.move(0,0)
+            background.resize(1920, 1080)
+        except AttributeError:
+            pass
         # sleep(1)
         window.move(610, 50)
         window.resize(800, 1000)
         # window.show()
 
-    background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True)
+    background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode == 4 else None
     window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
 
     # webview.start()
@@ -79,8 +82,9 @@ def get_clicks():
     ns.find_and_click(cp["Email"])
     grab_images("Send","Send", instance = 2, search="vague")
     ns.find_and_click(cp["Send"])
+    time = get_time()
     grab_images("Verification Code", "Verification Code")
-    ns.enter_verify(cp["Verification Code"])
+    ns.enter_verify(cp["Verification Code"], time)
     grab_images("Continue","Continue")
     ns.find_and_click(cp["Continue"])
     grab_images("Skip","Skip")
@@ -102,4 +106,3 @@ def get_to_landing_page(cp):
     ns.find_and_click(cp["Continue"])
     ns.find_and_click(cp["Skip"])
     sleep(2)
-    

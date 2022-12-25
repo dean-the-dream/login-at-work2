@@ -32,8 +32,8 @@ def get_clicks():
     grab_images("Punch","Out","Meal", "OK")
 
 def make_dir():
-    os.makedirs(f"{main_dir}img/")
-    os.makedirs(f"{main_dir}img/full-screen-shots")
+    os.makedirs(f"{main_dir}img2/")
+    os.makedirs(f"{main_dir}img2/full-screen-shots")
 # if not complete_capture:
 
     
