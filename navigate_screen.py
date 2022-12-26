@@ -85,7 +85,7 @@ def workday_login(username, password, login):
     pg.click()
 
 # copy and past verify code
-def enter_verify(image_path, time):
+def enter_verify(image_path, time = None):
     center_image = locate_image(image_path)
 
     # move the mouse to the center of username input box

@@ -2,15 +2,17 @@
 # This module contains the procedurse to sign in or out
 ###############################################################################################
 import navigate_screen as ns
-from pyautogui import press, keyDown, keyUp, scroll, click
-from tkinter import *
+# from pyautogui import press, keyDown, keyUp, scroll, click
+# from tkinter import *
 import webview
 from word_detection import grab_images, fill_dict, screens, click_points as cp
 from time import sleep
-from creds import un, password, main_dir
-from email_integration import get_time
+# from creds import un, password, main_dir
+# from email_integration import get_time
 from screeninfo import get_monitors
-from creds import main_dir
+# from creds import main_dir
+import sys
+sys.path
 
 
 def main():
@@ -68,31 +70,31 @@ def choose_mode():
     Enter Selection: """))
     return log_mode
 
-def get_clicks():
-    fill_dict(screens, f"{main_dir}img/full-screen-shots/")
-    grab_images("Heartland","Heartland")
-    ns.find_and_click(cp["Heartland"])
-    grab_images("Login","Username", "Password", "Login")
-    ns.find_and_click(cp["Username"])
-    ns.click_and_paste(un)
-    ns.find_and_click(cp["Password"])
-    ns.click_and_paste(password)
-    ns.find_and_click(cp["Login"])
-    grab_images("Email","Email")
-    ns.find_and_click(cp["Email"])
-    grab_images("Send","Send", instance = 2, search="vague")
-    ns.find_and_click(cp["Send"])
-    time = get_time()
-    grab_images("Verification Code", "Verification Code")
-    ns.enter_verify(cp["Verification Code"], time)
-    grab_images("Continue","Continue")
-    ns.find_and_click(cp["Continue"])
-    grab_images("Skip","Skip")
-    ns.find_and_click(cp["Skip"])
-    sleep(2)
-    grab_images("Welcome","Check In", "Check Out")
-    ns.find_and_click(cp["Check Out"])
-    grab_images("Punch","Out","Meal", "OK")
+# def get_clicks():
+#     fill_dict(screens, f"{main_dir}img/full-screen-shots/")
+#     grab_images("Heartland","Heartland")
+#     ns.find_and_click(cp["Heartland"])
+#     grab_images("Login","Username", "Password", "Login")
+#     ns.find_and_click(cp["Username"])
+#     ns.click_and_paste(un)
+#     ns.find_and_click(cp["Password"])
+#     ns.click_and_paste(password)
+#     ns.find_and_click(cp["Login"])
+#     grab_images("Email","Email")
+#     ns.find_and_click(cp["Email"])
+#     grab_images("Send","Send", instance = 2, search="vague")
+#     ns.find_and_click(cp["Send"])
+#     time = get_time()
+#     grab_images("Verification Code", "Verification Code")
+#     ns.enter_verify(cp["Verification Code"], time)
+#     grab_images("Continue","Continue")
+#     ns.find_and_click(cp["Continue"])
+#     grab_images("Skip","Skip")
+#     ns.find_and_click(cp["Skip"])
+#     sleep(2)
+#     grab_images("Welcome","Check In", "Check Out")
+#     ns.find_and_click(cp["Check Out"])
+#     grab_images("Punch","Out","Meal", "OK")
     
 
 

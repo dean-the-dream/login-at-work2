@@ -2,11 +2,10 @@ import os
 from navigate_screen import arrange_photos as sort_pics
 import email_integration as el
 import login_logout as logio
-from time import sleep
+from login_setup import get_clicks, make_dir
 from word_detection import fill_dict, click_points
 import threading
 import keyboard
-from login_setup import make_dir
 from creds import main_dir
 
 
@@ -27,11 +26,11 @@ def thread2(mode):
             case 3:
                 logio.sign_out(click_points)
             case 4: 
-                logio.get_clicks()
+                get_clicks()
             case 5: 
-                logio.lunch_sign_out(click_points, test=True)
+                logio.sign_out(click_points, test=True)
     elif mode == 4:
-        logio.get_clicks()
+        get_clicks()
     else:
         print("Invalid input, try again")
  
@@ -50,7 +49,7 @@ def main():
         print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
         logio.open_browser(mode)
         make_dir()
-        logio.get_clicks()
+        get_clicks()
    
 
     start_login = threading.Thread(target=thread2, args = [mode])

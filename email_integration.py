@@ -78,13 +78,13 @@ def get_time():
 
 
 # get the verify code from the email
-def get_verify_code(time):
+def get_verify_code(ntime):
     # login to email account
     my_mail.login(creds.emailun, creds.imapPW)
 
     # get the current time as a string
-    if time:
-        current_time = time
+    if ntime:
+        current_time = ntime
     else:
         current_time = get_time()
 
