@@ -1,94 +1,110 @@
 from word_detection import grab_images, fill_dict, screens, click_points as cp
 import navigate_screen as ns
 from time import sleep
-import os
+from os import path, makedirs
 from creds import main_dir, password, un
 import sys
 from email_integration import get_time
+from login_logout import lunch_sign_out as lunch, sign_out
 
 
 
 
 
 
-def get_clicks( test = False):
-    completed = 0
-    step = 0
+def get_clicks(mode, test = False):
     fill_dict(screens, f"{main_dir}img/full-screen-shots/")
 
-    if completed < [1]:
+    if not path.exists(cp["Heartland"]):
         grab_images("Heartland","Heartland")
-        steps += 1
     ns.find_and_click(cp["Heartland"])
 
-    if completed < [2]:
+    if (not path.exists(cp["Username"])) or (not path.exists(cp["Password"])) or (not path.exists(cp["Login"])):
         grab_images("Login","Username", "Password", "Login")
-        steps += 1
     ns.find_and_click(cp["Username"])
     ns.click_and_paste(un) 
 
-    if completed < [3]:
+    if not path.exists(cp["recognize the username"]):
         ns.find_and_click(cp["Password"])
-        ns.click_and_paste(12345)
+        ns.click_and_paste("12345")
         ns.find_and_click(cp["Login"])
-        grab_images("recognize","recognize the username", search = "vague")
+        grab_images("recognize the username","recognize the username", specificity = "vague")
+    ns.find_and_click(cp["Password"])
     ns.click_and_paste(password)
     ns.find_and_click(cp["Login"])
 
-    if completed < [4]:
-        grab_images("Email","Email")
-        steps += 1
+    if not path.exists(cp["Email"]):
+        grab_images("Email","Email") 
     ns.find_and_click(cp["Email"])
 
-    if completed < [5]:
-        grab_images("Send","Send", instance = 2, search="vague")
-        steps += 1
+    if not path.exists(cp["Send"]):
+        grab_images("Send","Send", instance = 2, specificity="vague")
     ns.find_and_click(cp["Send"])
     time = get_time()
 
-    if completed < [6]:
+    if not path.exists(cp["Verification Code"]):
         grab_images("Verification Code", "Verification Code")
-        steps += 1
     ns.enter_verify(cp["Verification Code"], time)
 
-    if completed < [7]:
+    if not path.exists(cp["Continue"]):
         grab_images("Continue","Continue")
-        steps += 1
     ns.find_and_click(cp["Continue"])
 
-    if completed < [8]:
+    if not path.exists(cp["Skip"]):
         grab_images("Skip","Skip")
-        steps += 1
     ns.find_and_click(cp["Skip"])
     sleep(2)
 
-    if completed < [9]:
+    if (not path.exists(cp["Check In"])) or (not path.exists(cp["Check Out"])):
         grab_images("Welcome","Check In", "Check Out")
-        steps += 1
-    ns.find_and_click(cp["Check Out"])
+    
+    
 
-    if completed < [10]:
+    if (not path.exists(cp["Out"])) or (not path.exists(cp["Meal"])) or (not path.exists(cp["OK"])) or (not path.exists(cp["Cancel"])):
+        ns.find_and_click(cp["Check Out"])
         grab_images("Punch","Out","Meal", "OK", "Cancel")
-        steps += 1 
-    ns.find_and_click(cp["Cancel"])
-    ns.find_and_click(cp["Check In"])
+        ns.find_and_click(cp["Cancel"])
 
-
-    if (completed < [11]) and not test:
-        ns.find_and_click(cp["OK"])
-        grab_images("Done","Done")
+    if not path.exists(cp["Check In OK"]):
         ns.find_and_click(cp["Check In"])
-        # grab_images("Punch","Out","Meal", "OK", "Cancel")
-    if not test:
-        file = open("progress.py")
-        for line in file:
-            if steps in line:
-                steps
+        grab_images("Check In OK", "Check In OK", search = "OK")
+        ns.find_and_click(cp["Cancel"])
+
+
+    
+    if mode == 1:
+        ns.find_and_click(cp["Check In"])
+
+        if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
+            ns.find_and_click(cp["Check In OK"])
+            grab_images("Done", "Done")
+            ns.find_and_click(cp["Check In"])
+            grab_images("already checked in", "already checked in")
+            ns.find_and_click(cp["Cancel"])
+        else:
+            grab_images("already checked in", "already checked in", specificity= "vague")
+            return "checkedin"
+
+
+    ns.find_and_click(cp["Cancel"])
+    if mode == 2:
+        lunch()
+    if mode == 3:
+        sign_out()
+
+
+        
+            # if not test:
+            #     ns.find_and_click(cp["OK"])
+            #     grab_images("Done","Done")
+            #     ns.find_and_click(cp["Check In"])
+            #     # grab_images("")
+            # grab_images("Punch","Out","Meal", "OK", "Cancel")
+
 
 
 
 def make_dir():
-    os.makedirs(f"{main_dir}img2/")
-    os.makedirs(f"{main_dir}img2/full-screen-shots")
+    makedirs(f"{main_dir}img/")
+    makedirs(f"{main_dir}img/full-screen-shots")
 
-print(data)

@@ -43,6 +43,10 @@ click_points = {"Heartland":None,
     "Check In": None,
     "Check Out": None,
     "Done": None,
+    "recognize the username": None,
+    "Check In OK": None,
+    "already checked in": None,
+    "Cancel": None
 
     }
 
@@ -57,6 +61,10 @@ screens = {
     "Welcome": None,
     "Punch": None,
     "Done": None,
+    "recognize the username": None,
+    "Check In OK": None,
+    "Cancel": None,
+    "already checked in": None
 }
 
 # def img_coordinates(tl,tr,br):
@@ -71,7 +79,7 @@ screens = {
 #     return (top, left, width, height)
 
 
-def grab_images(screen_name, *image_list,  search = "explicit", instance = 1):
+def grab_images(screen_name, *image_list,  specificity = "explicit", instance = 1, search = None):
     instance = instance - 1
     # pass lanuguage arguments to the reader object
     
@@ -91,18 +99,23 @@ def grab_images(screen_name, *image_list,  search = "explicit", instance = 1):
 
     for i, image in enumerate(image_list):
         # find the specific word you are looking for
-        word_to_detect = image_list[i]
+        word_to_detect = search if search else image_list[i]
 
         # produces a list of the coordinates, surrounding the current word
-        current_word = list(filter(lambda x: 
-        (word_to_detect in x[1])
-        if search == "vague"
-        else x[1] == word_to_detect
-        , list_of_words))[instance][0]
+        try:
+            current_word = list(filter(lambda x: 
+            (word_to_detect in x[1])
+            if specificity == "vague"
+            else x[1] == word_to_detect, 
+            list_of_words))[instance][0]
+        except IndexError:
+            print(word_to_detect, "<<< current_word")
+            print("word not found")
+            return False
         # current_word = list(filter(lambda x: word_to_detect in x[1] , list_of_words))[instance][0]
         
-        print(current_word, "<<< current_word")
+        
         image = ImageGrab.grab(bbox = (current_word[0][0], current_word[0][1], current_word[2][0], current_word[2][1]))
         image.save(click_points[image_list[i]])
 
-        print(click_points)
+        print(click_points, "<<<< click points")

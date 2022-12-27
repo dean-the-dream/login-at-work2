@@ -31,7 +31,7 @@ def open_browser(mode):
         except AttributeError:
             pass
         # sleep(1)
-        window.move(610, 50)
+        window.move(610, 10)
         window.resize(800, 1000)
         # window.show()
 
@@ -41,19 +41,30 @@ def open_browser(mode):
     # webview.start()
     webview.start(move,(window,background))
 
-    
+def get_to_landing_page(cp):
+    ns.find_and_click(cp["Heartland"]) 
+    ns.workday_login(cp["Username"],cp["Password"],cp["Login"])
+    ns.find_and_click(cp["Email"])
+    ns.find_and_click(cp["Send"])
+    ns.enter_verify(cp["Verification Code"])
+    ns.find_and_click(cp["Continue"])
+    ns.find_and_click(cp["Skip"])
+    sleep(2)    
 
 def sign_in(images, test = False):
+    get_to_landing_page(images)
     ns.find_and_click(images["Check In"])
     None if test else ns.find_and_click(images["OK"])
 
 def lunch_sign_out(images, test = False):
+    get_to_landing_page(images)
     ns.find_and_click(images["Check Out"])
     ns.find_and_click(images["Meal"])
     None if test else ns.find_and_click(images["OK"])
     
 
 def sign_out(images, test = False):
+    get_to_landing_page(images)
     ns.find_and_click(images["Check Out"])
     ns.find_and_click(images["Out"])
     None if test else ns.find_and_click(images["OK"])
@@ -99,12 +110,3 @@ def choose_mode():
 
 
 
-def get_to_landing_page(cp):
-    ns.find_and_click(cp["Heartland"]) 
-    ns.workday_login(cp["Username"],cp["Password"],cp["Login"])
-    ns.find_and_click(cp["Email"])
-    ns.find_and_click(cp["Send"])
-    ns.enter_verify(cp["Verification Code"])
-    ns.find_and_click(cp["Continue"])
-    ns.find_and_click(cp["Skip"])
-    sleep(2)
