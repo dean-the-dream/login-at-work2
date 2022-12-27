@@ -79,6 +79,8 @@ def choose_mode():
     5) Test
     
     Enter Selection: """))
+
+    
     return log_mode
 
 # def get_clicks():

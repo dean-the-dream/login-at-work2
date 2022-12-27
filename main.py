@@ -16,17 +16,17 @@ from creds import main_dir
 def thread2(mode):
     match mode:
         case 1:
-            if not path.exists(click_points["already checked in"]):
+            if not path.exists(click_points["Done"]):
                 get_clicks(mode)
             else:
                 logio.sign_in(click_points)
         case 2:
-            if not path.exists(click_points["Check In OK"]):
+            if not path.exists(click_points["Done"]):
                 get_clicks(mode)
             else:
                 logio.lunch_sign_out(click_points)
         case 3:
-            if not path.exists(click_points["Check In OK"]):
+            if not path.exists(click_points["Done"]):
                 get_clicks(mode)
             else:
                 logio.sign_out(click_points)

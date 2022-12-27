@@ -55,6 +55,7 @@ def get_clicks(mode, test = False):
     ns.find_and_click(cp["Skip"])
     sleep(2)
 
+    
     if (not path.exists(cp["Check In"])) or (not path.exists(cp["Check Out"])):
         grab_images("Welcome","Check In", "Check Out")
     
@@ -74,10 +75,11 @@ def get_clicks(mode, test = False):
     
     if mode == 1:
         ns.find_and_click(cp["Check In"])
-
+        
         if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
             ns.find_and_click(cp["Check In OK"])
             grab_images("Done", "Done")
+            ns.find_and_click(cp["Done"])
             ns.find_and_click(cp["Check In"])
             grab_images("already checked in", "already checked in")
             ns.find_and_click(cp["Cancel"])
@@ -85,11 +87,9 @@ def get_clicks(mode, test = False):
             grab_images("already checked in", "already checked in", specificity= "vague")
             return "checkedin"
 
-
-    ns.find_and_click(cp["Cancel"])
-    if mode == 2:
+    elif mode == 2:
         lunch()
-    if mode == 3:
+    elif mode == 3:
         sign_out()
 
 
