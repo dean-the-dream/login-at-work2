@@ -5,7 +5,7 @@ from os import path, makedirs
 from creds import main_dir, password, un
 import sys
 from email_integration import get_time
-from login_logout import lunch_sign_out as lunch, sign_out
+
 
 
 
@@ -73,7 +73,7 @@ def get_clicks(mode, test = False):
 
 
     
-    if mode == 1:
+    if mode == 6:
         ns.find_and_click(cp["Check In"])
         
         if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
@@ -87,10 +87,14 @@ def get_clicks(mode, test = False):
             grab_images("already checked in", "already checked in", specificity= "vague")
             return "checkedin"
 
-    elif mode == 2:
-        lunch()
-    elif mode == 3:
-        sign_out()
+    elif mode == 7:
+        ns.find_and_click(cp["Check Out"])
+        ns.find_and_click(cp["Meal"])
+        ns.find_and_click(cp["OK"])
+    elif mode == 8:
+        ns.find_and_click(cp["Check Out"])
+        ns.find_and_click(cp["Out"])
+        ns.find_and_click(cp["OK"])
 
 
         

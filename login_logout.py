@@ -13,6 +13,8 @@ from screeninfo import get_monitors
 # from creds import main_dir
 import sys
 sys.path
+from os import path
+from login_setup import get_clicks
 
 
 def main():
@@ -35,7 +37,8 @@ def open_browser(mode):
         window.resize(800, 1000)
         # window.show()
 
-    background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode == 4 else None
+    
+    background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode > 3 else None
     window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
 
     # webview.start()
@@ -79,8 +82,17 @@ def choose_mode():
     5) Test
     
     Enter Selection: """))
-
     
+    match log_mode:
+        case 1:
+            if not path.exists(cp["Done"]):
+                log_mode = 6
+        case 2:
+            if not path.exists(cp["Done"]):
+                log_mode = 7
+        case 3:
+            if not path.exists(cp["Done"]):
+                log_mode = 8
     return log_mode
 
 # def get_clicks():

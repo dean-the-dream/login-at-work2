@@ -16,24 +16,21 @@ from creds import main_dir
 def thread2(mode):
     match mode:
         case 1:
-            if not path.exists(click_points["Done"]):
-                get_clicks(mode)
-            else:
-                logio.sign_in(click_points)
+            logio.sign_in(click_points)
         case 2:
-            if not path.exists(click_points["Done"]):
-                get_clicks(mode)
-            else:
-                logio.lunch_sign_out(click_points)
+            logio.lunch_sign_out(click_points)
         case 3:
-            if not path.exists(click_points["Done"]):
-                get_clicks(mode)
-            else:
-                logio.sign_out(click_points)
+            logio.sign_out(click_points)
         case 4: 
-            get_clicks(1)
+            get_clicks(mode)
         case 5: 
             logio.sign_out(click_points, test=True)
+        case 6:
+            get_clicks(mode)
+        case 7:
+            get_clicks(mode)
+        case 8:
+            get_clicks(mode)
         case _:
             print("Invalid input, try again")
  
@@ -52,7 +49,7 @@ def main():
         print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
         logio.open_browser(mode)
         make_dir()
-        get_clicks(1)
+        get_clicks(mode)
    
 
     start_login = threading.Thread(target=thread2, args = [mode])
