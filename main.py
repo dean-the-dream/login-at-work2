@@ -1,4 +1,4 @@
-from os import path, listdir
+from os import listdir
 from navigate_screen import arrange_photos as sort_pics
 import email_integration as el
 import login_logout as logio
@@ -7,6 +7,7 @@ from word_detection import fill_dict, click_points
 import threading
 import keyboard
 from creds import main_dir
+import sys
 
 
 
@@ -16,21 +17,21 @@ from creds import main_dir
 def thread2(mode):
     match mode:
         case 1:
-            logio.sign_in(click_points)
+            logio.sign_in(click_points, test=True)
         case 2:
-            logio.lunch_sign_out(click_points)
+            logio.lunch_sign_out(click_points, test=True)
         case 3:
-            logio.sign_out(click_points)
+            logio.sign_out(click_points, test=True)
         case 4: 
             get_clicks(mode)
         case 5: 
             logio.sign_out(click_points, test=True)
         case 6:
-            get_clicks(mode)
+            get_clicks(mode, test=True)
         case 7:
-            get_clicks(mode)
+            get_clicks(mode, test=True)
         case 8:
-            get_clicks(mode)
+            get_clicks(mode, test=True)
         case _:
             print("Invalid input, try again")
  
@@ -53,13 +54,10 @@ def main():
    
 
     start_login = threading.Thread(target=thread2, args = [mode])
+    start_login.daemon = True
     start_login.start()
     logio.open_browser(mode)
-    while True:
-        if keyboard.is_pressed("q"):
-            print("You pressed a button")
-            kill_thread = True
-            print(kill_thread)
+    sys.exit()
         
    
     

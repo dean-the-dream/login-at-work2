@@ -72,38 +72,29 @@ def get_clicks(mode, test = False):
         ns.find_and_click(cp["Cancel"])
 
 
-    
-    if mode == 6:
-        ns.find_and_click(cp["Check In"])
-        
-        if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
-            ns.find_and_click(cp["Check In OK"])
-            grab_images("Done", "Done")
-            ns.find_and_click(cp["Done"])
+    if test == False:
+        if mode == 6:
             ns.find_and_click(cp["Check In"])
-            grab_images("already checked in", "already checked in")
-            ns.find_and_click(cp["Cancel"])
-        else:
-            grab_images("already checked in", "already checked in", specificity= "vague")
-            return "checkedin"
+            
+            if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
+                ns.find_and_click(cp["Check In OK"])
+                grab_images("Done", "Done")
+                ns.find_and_click(cp["Done"])
+                ns.find_and_click(cp["Check In"])
+                grab_images("already checked in", "already checked in")
+                ns.find_and_click(cp["Cancel"])
+            else:
+                grab_images("already checked in", "already checked in", specificity= "vague")
+                return "checkedin"
 
-    elif mode == 7:
-        ns.find_and_click(cp["Check Out"])
-        ns.find_and_click(cp["Meal"])
-        ns.find_and_click(cp["OK"])
-    elif mode == 8:
-        ns.find_and_click(cp["Check Out"])
-        ns.find_and_click(cp["Out"])
-        ns.find_and_click(cp["OK"])
-
-
-        
-            # if not test:
-            #     ns.find_and_click(cp["OK"])
-            #     grab_images("Done","Done")
-            #     ns.find_and_click(cp["Check In"])
-            #     # grab_images("")
-            # grab_images("Punch","Out","Meal", "OK", "Cancel")
+        elif mode == 7:
+            ns.find_and_click(cp["Check Out"])
+            ns.find_and_click(cp["Meal"])
+            ns.find_and_click(cp["OK"])
+        elif mode == 8:
+            ns.find_and_click(cp["Check Out"])
+            ns.find_and_click(cp["Out"])
+            ns.find_and_click(cp["OK"])
 
 
 
