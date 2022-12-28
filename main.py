@@ -1,5 +1,4 @@
 from os import listdir
-from navigate_screen import arrange_photos as sort_pics
 import email_integration as el
 import login_logout as logio
 from login_setup import get_clicks, make_dir
@@ -11,8 +10,7 @@ import sys
 
 
 
-# images = sort_pics(img_list, 'heartland_button.png', 'login_welcome.png', 'login_button.png', 'choose_email_auth.png', 'send_to_email.png', 'verify_code.png','continue_button.png', "remember_check_box.png", "global_pay_logo.png", "submit.png", "check_in.png", "check_out.png", "details.png", "ok.png", "meal.png", "out.png")
-
+fill_dict(click_points, f"{main_dir}img/")
 
 def thread2(mode):
     match mode:
@@ -54,7 +52,7 @@ def main():
    
 
     start_login = threading.Thread(target=thread2, args = [mode])
-    start_login.daemon = True
+    # start_login.daemon = True
     start_login.start()
     logio.open_browser(mode)
     sys.exit()
