@@ -11,23 +11,24 @@ import sys
 fill_dict(click_points, f"{main_dir}img/")
 
 def thread2(mode):
+    run_test = True
     match mode:
         case 1:
-            logio.sign_in(click_points, test = True)
+            logio.sign_in(click_points, test = run_test)
         case 2:
-            logio.lunch_sign_out(click_points, test = True)
+            logio.lunch_sign_out(click_points, test = run_test)
         case 3:
-            logio.sign_out(click_points, test = True)
+            logio.sign_out(click_points, test = run_test)
         case 4: 
-            get_clicks(mode, test = True)
+            get_clicks(mode, test = run_test)
         case 5: 
-            logio.sign_out(click_points, test = True)
+            logio.sign_out(click_points, test = run_test)
         case 6:
-            get_clicks(mode, test = True)
+            get_clicks(mode, test = run_test)
         case 7:
-            get_clicks(mode, test = True)
+            get_clicks(mode, test = run_test)
         case 8:
-            get_clicks(mode, test = True)
+            get_clicks(mode, test = run_test)
         case _:
             print("Invalid input, try again")
  
