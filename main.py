@@ -11,11 +11,11 @@ import threading
 
 fill_dict(click_points, f"{main_dir}img/")
 
-def thread2(mode):
+def thread2(mode, close_window):
     run_test = True
     match mode:
         case 1:
-            logio.sign_in(click_points, test = run_test)
+            logio.sign_in(click_points, close_window, test = run_test)
         case 2:
             logio.lunch_sign_out(click_points, test = run_test)
         case 3:
@@ -41,6 +41,10 @@ def thread2(mode):
 
 def main():
     mode = logio.choose_mode()
+    def close_window(finished):  
+        if finished:
+            return True
+        return False
     try:
         fill_dict(click_points, f"{main_dir}img/")
         img_list =  listdir(f"{main_dir}img/full-screen-shots")
@@ -51,10 +55,10 @@ def main():
         get_clicks(mode)
    
 
-    start_login = threading.Thread(target=thread2, args = [mode])
+    start_login = threading.Thread(target=thread2, args = [mode,close_window])
     start_login.daemon = True
     start_login.start()
-    logio.open_browser(mode)
+    logio.open_browser(mode, close_window)
     sys.exit()
         
    

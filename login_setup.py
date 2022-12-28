@@ -12,7 +12,7 @@ from email_integration import get_time
 
 
 
-def get_clicks(mode, test = False):
+def get_clicks(mode, terminate, test = False, ):
     fill_dict(screens, f"{main_dir}img/full-screen-shots/")
 
     if not path.exists(cp["Heartland"]):
@@ -75,16 +75,18 @@ def get_clicks(mode, test = False):
     if mode == 6:
         ns.find_and_click(cp["Check In"])
         
-        if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
-            None if test else ns.find_and_click(cp["Check In OK"])
-            grab_images("Done", "Done")
-            ns.find_and_click(cp["Done"])
-            ns.find_and_click(cp["Check In"])
-            grab_images("already checked in", "already checked in")
-            ns.find_and_click(cp["Cancel"])
-        else:
-            grab_images("already checked in", "already checked in", specificity= "vague")
-            return "checkedin"
+        if not test:
+            if  grab_images("already checked in", "already checked in", specificity= "vague") == False:
+                ns.find_and_click(cp["Check In OK"])
+                grab_images("Done", "Done")
+                ns.find_and_click(cp["Done"])
+                ns.find_and_click(cp["Check In"])
+                grab_images("already checked in", "already checked in")
+                ns.find_and_click(cp["Cancel"])
+            else:
+                grab_images("already checked in", "already checked in", specificity= "vague")
+                return "checkedin"
+        terminate(True)
 
     elif mode == 7:
         ns.find_and_click(cp["Check Out"])

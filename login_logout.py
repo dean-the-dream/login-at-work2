@@ -23,7 +23,7 @@ def main():
 if __name__ == "__name__":
     main()
 
-def open_browser(mode):
+def open_browser(mode, close):
     monitors = get_monitors
 
     def move(window, background):
@@ -36,6 +36,9 @@ def open_browser(mode):
         window.move(610, 10)
         window.resize(800, 1000)
         # window.show()
+    def destroy(window):
+        window.destroy()
+        background.destroy()
 
     
     background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode > 3 else None
@@ -43,6 +46,11 @@ def open_browser(mode):
 
     # webview.start()
     webview.start(move,(window,background))
+    while True:
+        if close == True:
+            webview.start(destroy,(window,background))
+
+
 
 def get_to_landing_page(cp):
     ns.find_and_click(cp["Heartland"]) 
