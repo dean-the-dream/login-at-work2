@@ -3,8 +3,6 @@ import email_integration as el
 import login_logout as logio
 from login_setup import get_clicks, make_dir
 from word_detection import fill_dict, click_points
-import threading
-import keyboard
 from creds import main_dir
 import sys
 
@@ -15,21 +13,21 @@ fill_dict(click_points, f"{main_dir}img/")
 def thread2(mode):
     match mode:
         case 1:
-            logio.sign_in(click_points, test=True)
+            logio.sign_in(click_points)
         case 2:
-            logio.lunch_sign_out(click_points, test=True)
+            logio.lunch_sign_out(click_points)
         case 3:
-            logio.sign_out(click_points, test=True)
+            logio.sign_out(click_points)
         case 4: 
             get_clicks(mode)
         case 5: 
-            logio.sign_out(click_points, test=True)
+            logio.sign_out(click_points)
         case 6:
-            get_clicks(mode, test=True)
+            get_clicks(mode)
         case 7:
-            get_clicks(mode, test=True)
+            get_clicks(mode)
         case 8:
-            get_clicks(mode, test=True)
+            get_clicks(mode)
         case _:
             print("Invalid input, try again")
  
