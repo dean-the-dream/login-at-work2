@@ -5,6 +5,7 @@ from login_setup import get_clicks, make_dir
 from word_detection import fill_dict, click_points
 from creds import main_dir
 import sys
+import threading
 
 
 
@@ -51,7 +52,7 @@ def main():
    
 
     start_login = threading.Thread(target=thread2, args = [mode])
-    # start_login.daemon = True
+    start_login.daemon = True
     start_login.start()
     logio.open_browser(mode)
     sys.exit()

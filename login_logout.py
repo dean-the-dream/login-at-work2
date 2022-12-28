@@ -85,7 +85,7 @@ def choose_mode():
     
     match log_mode:
         case 1:
-            if not path.exists(cp["Done"]):
+            if (not path.exists(cp["Done"])) or (not path.exists(cp["already checked in"])):
                 log_mode = 6
         case 2:
             if not path.exists(cp["Done"]):
