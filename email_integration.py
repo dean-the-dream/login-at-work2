@@ -9,9 +9,9 @@ my_mail=imaplib.IMAP4_SSL(creds.imap_server)
 
 
 
-#retrieve verify code email from inbox
+#retrieve most recent email from inbox
 def get_message():
-
+    '''retrieves  tmost recent email from inbox'''
     #select auth code messages from messages
     my_mail.select('Inbox')
     key = 'From'
@@ -27,8 +27,10 @@ def get_message():
     my_mail.close()
     return message
 
+    
+
 # check message for correct time
-def check_message(message, current_time):
+def check_message(current_time):
 
     # get the date and time of the message
     email_time = get_message().get("Date")
@@ -70,6 +72,7 @@ def check_message(message, current_time):
 
     # return True
 
+# obtain the current time and format it
 def get_time():
         current_time = str(dt.now(timezone.utc))[:19]
         current_time = dt.strptime(current_time, '%Y-%m-%d %H:%M:%S')
@@ -77,7 +80,7 @@ def get_time():
         return current_time
 
 
-# get the verify code from the email
+# checks the inbox until an email is recieve after the time given as an argument
 def get_verify_code(ntime):
     # login to email account
     my_mail.login(creds.emailun, creds.imapPW)
@@ -91,7 +94,7 @@ def get_verify_code(ntime):
     message = get_message()
     
     # check the inbox every 3 seconds until the correct email is found
-    while not check_message(message,current_time):
+    while not check_message(current_time):
         message = get_message()
         time.sleep(3)
         print(message.get("Subject")[24:30])
