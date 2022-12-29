@@ -1,6 +1,7 @@
 from os import listdir
 import email_integration as el
 import login_logout as logio
+from login_logout import windows
 from login_setup import get_clicks, make_dir
 from word_detection import fill_dict, click_points
 from creds import main_dir
@@ -11,21 +12,21 @@ import threading
 
 fill_dict(click_points, f"{main_dir}img/")
 
-def thread2(mode, close_window):
+def thread2(mode, kill_window):
     run_test = True
     match mode:
         case 1:
-            logio.sign_in(click_points, close_window, test = run_test)
+            logio.sign_in(click_points, test = run_test)
         case 2:
             logio.lunch_sign_out(click_points, test = run_test)
         case 3:
             logio.sign_out(click_points, test = run_test)
         case 4: 
-            get_clicks(mode, test = run_test)
+            get_clicks(mode, kill_window, test = run_test)
         case 5: 
             logio.sign_out(click_points, test = run_test)
         case 6:
-            get_clicks(mode, test = run_test)
+            get_clicks(mode, kill_window, test = run_test)
         case 7:
             get_clicks(mode, test = run_test)
         case 8:
@@ -41,10 +42,6 @@ def thread2(mode, close_window):
 
 def main():
     mode = logio.choose_mode()
-    def close_window(finished):  
-        if finished:
-            return True
-        return False
     try:
         fill_dict(click_points, f"{main_dir}img/")
         img_list =  listdir(f"{main_dir}img/full-screen-shots")
@@ -55,12 +52,13 @@ def main():
         get_clicks(mode)
    
 
-    start_login = threading.Thread(target=thread2, args = [mode,close_window])
+    start_login = threading.Thread(target=thread2, args = [mode, windows.destroy])
     start_login.daemon = True
     start_login.start()
-    logio.open_browser(mode, close_window)
-    sys.exit()
-        
+
+    # logio.open_browser(mode)
+    # sys.exit()
+    windows.start()
    
     
 if __name__ == "__name__":

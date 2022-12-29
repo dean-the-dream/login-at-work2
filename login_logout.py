@@ -16,39 +16,60 @@ sys.path
 from os import path
 from login_setup import get_clicks
 
-
 def main():
     print()
 
 if __name__ == "__name__":
     main()
 
-def open_browser(mode, close):
-    monitors = get_monitors
 
-    def move(window, background):
-        try:
-            background.move(0,0)
-            background.resize(1920, 1080)
-        except AttributeError:
-            pass
-        # sleep(1)
-        window.move(610, 10)
-        window.resize(800, 1000)
-        # window.show()
-    def destroy(window):
-        window.destroy()
-        background.destroy()
+class Windows(object):
+    def __init__(self) -> None:
+        self.background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True)
+        self.main = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
+
+    def move(self, window1, window2):
+        window1.move(0,0)
+        window1.resize(1920, 1080)
+        window2.move(610, 10)
+        window2.resize(800, 1000)
+
+    def destroy(self):
+        self.background.destroy()
+        self.main.destroy()
+
+    def start(self):
+        webview.start(self.move,(self.background,self.main))
+
+windows = Windows()
+
+
+# def open_browser(mode):
+#     monitors = get_monitors
+
+#     def move(window, background):
+#         try:
+#             background.move(0,0)
+#             background.resize(1920, 1080)
+#         except AttributeError:
+#             pass
+#         # sleep(1)
+#         window.move(610, 10)
+#         window.resize(800, 1000)
+#         # window.show()
+#     def destroy(window):
+#         window.destroy()
+#         background.destroy()
 
     
-    background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode > 3 else None
-    window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
+    # background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode > 3 else None
+    # window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
 
-    # webview.start()
-    webview.start(move,(window,background))
-    while True:
-        if close == True:
-            webview.start(destroy,(window,background))
+    # # webview.start()
+    # webview.start(move,(window,background))
+    # while True:
+    #     if terminate.close == True:
+    #         webview.start(destroy,(window,background))
 
 
 

@@ -1,11 +1,11 @@
-from screeninfo import get_monitors
-from word_detection import grab_images, click_points, fill_dict
-from pyautogui import press, keyDown, keyUp, scroll, click
-from time import sleep
-from navigate_screen import find_and_click
-from login_logout import get_to_landing_page as navigate
-import keyboard
-import os
+# from screeninfo import get_monitors
+# from word_detection import grab_images, click_points, fill_dict
+# from pyautogui import press, keyDown, keyUp, scroll, click
+# from time import sleep
+# from navigate_screen import find_and_click
+# from login_logout import get_to_landing_page as navigate
+# import keyboard
+# import os
 
 # monitor = 0
 # for m in get_monitors():
@@ -43,5 +43,14 @@ import os
 #         print(kill_thread)
 #         break
 # os.makedirs("C:/Program Files/Logio")   
-os.makedirs("C:/Coding/Logio/")
+# os.makedirs("C:/Coding/Logio/")
+
+class Terminate(object):
+    def __init__(self) -> None:
+        self.close = False
+
+    def closeWindow(self):
+        self.close = True
+
+terminate = Terminate()
         

@@ -5,6 +5,7 @@ from os import path, makedirs
 from creds import main_dir, password, un
 import sys
 from email_integration import get_time
+from cv2_test import terminate
 
 
 
@@ -12,7 +13,9 @@ from email_integration import get_time
 
 
 
-def get_clicks(mode, terminate, test = False, ):
+
+
+def get_clicks(mode, kill_window, test = False, ):
     fill_dict(screens, f"{main_dir}img/full-screen-shots/")
 
     if not path.exists(cp["Heartland"]):
@@ -23,6 +26,7 @@ def get_clicks(mode, terminate, test = False, ):
         grab_images("Login","Username", "Password", "Login")
     ns.find_and_click(cp["Username"])
     ns.click_and_paste(un) 
+    
 
     if not path.exists(cp["recognize the username"]):
         ns.find_and_click(cp["Password"])
@@ -31,6 +35,8 @@ def get_clicks(mode, terminate, test = False, ):
         grab_images("recognize the username","recognize the username", specificity = "vague")
     ns.find_and_click(cp["Password"])
     ns.click_and_paste(password)
+    kill_window()
+
     ns.find_and_click(cp["Login"])
 
     if not path.exists(cp["Email"]):
@@ -86,7 +92,7 @@ def get_clicks(mode, terminate, test = False, ):
             else:
                 grab_images("already checked in", "already checked in", specificity= "vague")
                 return "checkedin"
-        terminate(True)
+        
 
     elif mode == 7:
         ns.find_and_click(cp["Check Out"])
