@@ -2,10 +2,8 @@
 # This module contains the procedurse to sign in or out
 ###############################################################################################
 import navigate_screen as ns
-# from pyautogui import press, keyDown, keyUp, scroll, click
-# from tkinter import *
 import webview
-from word_detection import grab_images, fill_dict, screens, click_points as cp
+from gather_images import click_points as cp, fill_dict
 from time import sleep
 # from creds import un, password, main_dir
 # from email_integration import get_time
@@ -14,13 +12,14 @@ from screeninfo import get_monitors
 import sys
 sys.path
 from os import path
-from login_setup import get_clicks
-
 def main():
-    print()
+    pass
 
 if __name__ == "__name__":
     main()
+
+
+
 
 
 class Windows(object):
@@ -42,35 +41,6 @@ class Windows(object):
         webview.start(self.move,(self.background,self.main))
 
 windows = Windows()
-
-
-# def open_browser(mode):
-#     monitors = get_monitors
-
-#     def move(window, background):
-#         try:
-#             background.move(0,0)
-#             background.resize(1920, 1080)
-#         except AttributeError:
-#             pass
-#         # sleep(1)
-#         window.move(610, 10)
-#         window.resize(800, 1000)
-#         # window.show()
-#     def destroy(window):
-#         window.destroy()
-#         background.destroy()
-
-    
-    # background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True) if mode > 3 else None
-    # window = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
-
-    # # webview.start()
-    # webview.start(move,(window,background))
-    # while True:
-    #     if terminate.close == True:
-    #         webview.start(destroy,(window,background))
-
 
 
 def get_to_landing_page(cp):
@@ -123,33 +93,3 @@ def choose_mode():
             if not path.exists(cp["Done"]):
                 log_mode = 8
     return log_mode
-
-# def get_clicks():
-#     fill_dict(screens, f"{main_dir}img/full-screen-shots/")
-#     grab_images("Heartland","Heartland")
-#     ns.find_and_click(cp["Heartland"])
-#     grab_images("Login","Username", "Password", "Login")
-#     ns.find_and_click(cp["Username"])
-#     ns.click_and_paste(un)
-#     ns.find_and_click(cp["Password"])
-#     ns.click_and_paste(password)
-#     ns.find_and_click(cp["Login"])
-#     grab_images("Email","Email")
-#     ns.find_and_click(cp["Email"])
-#     grab_images("Send","Send", instance = 2, search="vague")
-#     ns.find_and_click(cp["Send"])
-#     time = get_time()
-#     grab_images("Verification Code", "Verification Code")
-#     ns.enter_verify(cp["Verification Code"], time)
-#     grab_images("Continue","Continue")
-#     ns.find_and_click(cp["Continue"])
-#     grab_images("Skip","Skip")
-#     ns.find_and_click(cp["Skip"])
-#     sleep(2)
-#     grab_images("Welcome","Check In", "Check Out")
-#     ns.find_and_click(cp["Check Out"])
-#     grab_images("Punch","Out","Meal", "OK")
-    
-
-
-

@@ -1,16 +1,13 @@
-from os import listdir
-import email_integration as el
+from os import listdir, path
 import login_logout as logio
 from login_logout import windows
-from login_setup import get_clicks, make_dir
-from word_detection import fill_dict, click_points
+from gather_images import click_points, get_clicks
 from creds import main_dir
-import sys
 import threading
 
 
 
-fill_dict(click_points, f"{main_dir}img/")
+
 
 def thread2(mode, kill_window):
     run_test = True
@@ -42,13 +39,9 @@ def thread2(mode, kill_window):
 
 def main():
     mode = logio.choose_mode()
-    try:
-        fill_dict(click_points, f"{main_dir}img/")
-        img_list =  listdir(f"{main_dir}img/full-screen-shots")
-    except FileNotFoundError:
+    if not path.isdir(f"{main_dir}img/"):
         print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
         logio.open_browser(mode)
-        make_dir()
         get_clicks(mode)
    
 
