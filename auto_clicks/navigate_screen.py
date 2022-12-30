@@ -35,7 +35,7 @@ def locate_image(image_path):
 
     # store the image in a variable
     image_location = pg.locateCenterOnScreen(image_path, confidence=.8) 
-    print(image_location, "location")
+    
     # wait for thirty second while python finds the center of the button
     timeout = time.time() + 30
     while image_location is None:
@@ -43,6 +43,7 @@ def locate_image(image_path):
         if time.time() > timeout:
             print("Something went wrong", "move and click timed out")
             break
+    print("Image Location:", image_location)
     return image_location
 
 # find the heartland button and click it

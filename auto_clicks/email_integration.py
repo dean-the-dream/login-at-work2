@@ -73,7 +73,7 @@ def check_message(current_time):
 def get_time():
         current_time = str(dt.now(timezone.utc))[:19]
         current_time = dt.strptime(current_time, '%Y-%m-%d %H:%M:%S')
-        print(current_time)
+        # print(current_time)
         return current_time
 
 
@@ -91,12 +91,14 @@ def get_verify_code(ntime):
     message = get_message()
     
     # check the inbox every 3 seconds until the correct email is found
+    print("Capturing verification code...")
     while not check_message(current_time):
         message = get_message()
         time.sleep(3)
-        print(message.get("Subject")[24:30])
+        # print(message.get("Subject")[24:30])
 
     # get the verification code from the  subject of the message
+    print("Verification code captured!")
     message = get_message()
     code = message.get("Subject")[24:30]
     return code
