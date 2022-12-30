@@ -178,7 +178,7 @@ def get_clicks(mode, test = False):
         ns.find_and_click(click_points["Check In"])
         
         if not test:
-            if not grab_image("already checked in", "already checked in", specificity= "vague") == False:
+            if grab_image("already checked in", "already checked in", specificity= "vague") == False:
                 ns.find_and_click(click_points["Check In OK"])
                 grab_image("Done", "Done")
                 ns.find_and_click(click_points["Done"])
@@ -187,7 +187,7 @@ def get_clicks(mode, test = False):
                 ns.find_and_click(click_points["Cancel"])
             else:
                 grab_image("already checked in", "already checked in", specificity= "vague")
-                return "checkedin"
+                print("checked in")
         
 
     elif mode == "lunch":

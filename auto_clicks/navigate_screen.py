@@ -89,9 +89,11 @@ def workday_login(username, password, login):
 def enter_verify(image_path, time = None):
     center_image = locate_image(image_path)
 
-    # move the mouse to the center of username input box
+    
+    code = get_code(time if time else None)
+    # move the mouse to the center of verify box
     pg.moveTo(center_image[0], center_image[1] + 40)
-    click_and_paste(get_code(time if time else None))
+    click_and_paste(code)
 
 # rearrange a list of pictures to ensure they are always in the intended order    
 def arrange_photos(img_list, *img_group):

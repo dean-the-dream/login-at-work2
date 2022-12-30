@@ -8,13 +8,14 @@ from gather_images import click_points, get_clicks, create_paths # type:ignore
 import threading
 from uix_app import run_uix, option
 from waiting import wait
+from time import sleep
 
 
 
 
 
 
-run_test = True
+run_test = False
 def thread2(mode):
     match mode:
         case 1:
@@ -27,7 +28,6 @@ def thread2(mode):
             get_clicks(mode, run_test)
         case _:
             print("Invalid input, try again")
-    # windows.destroy()
 def thread3():
     run_uix()
 
