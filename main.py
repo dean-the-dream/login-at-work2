@@ -1,16 +1,13 @@
-from os import listdir, path
+from os import path, mkdir
 import login_logout as logio
-from login_logout import windows
-from gather_images import click_points, get_clicks
-from creds import main_dir
+from navigate_screen import windows
+from gather_images import click_points, get_clicks, create_paths
 import threading
+from sys import exit
 
-
-
-
-
-def thread2(mode, kill_window):
-    run_test = True
+run_test = True
+def thread2(mode):
+   
     match mode:
         case 1:
             logio.sign_in(click_points, test = run_test)
@@ -19,39 +16,23 @@ def thread2(mode, kill_window):
         case 3:
             logio.sign_out(click_points, test = run_test)
         case 4: 
-            get_clicks(mode, kill_window, test = run_test)
-        case 5: 
-            logio.sign_out(click_points, test = run_test)
-        case 6:
-            get_clicks(mode, kill_window, test = run_test)
-        case 7:
-            get_clicks(mode, test = run_test)
-        case 8:
-            get_clicks(mode, test = run_test)
+            get_clicks(mode, run_test)
         case _:
             print("Invalid input, try again")
- 
-    
-
-
-
-    # logio.get_to_landing_page(images)
+    windows.destroy()
 
 def main():
-    mode = logio.choose_mode()
-    if not path.isdir(f"{main_dir}img/"):
-        print("""Since this is your first time, we have to map your screen to get a snapshot of the buttons.""")
-        logio.open_browser(mode)
-        get_clicks(mode)
-   
+    create_paths()
+    mode = logio.choose_mode(run_test)
+    print(mode)
 
-    start_login = threading.Thread(target=thread2, args = [mode, windows.destroy])
+    start_login = threading.Thread(target=thread2, args = [mode])
     start_login.daemon = True
     start_login.start()
-
-    # logio.open_browser(mode)
-    # sys.exit()
     windows.start()
+    
+    exit()
+    
    
     
 if __name__ == "__name__":

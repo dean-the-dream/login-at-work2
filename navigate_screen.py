@@ -1,10 +1,12 @@
-import webbrowser
+import webview
 import time
 import os
 import creds
 import pyautogui as pg
 import time
 from email_integration import get_verify_code as get_code
+from gather_images import click_points as cp
+from os.path import exists
 
 
 #############################################################################################
@@ -45,8 +47,7 @@ def locate_image(image_path):
 
 # find the heartland button and click it
 def find_and_click(image_path, delay=0):
-    print(image_path)
-    print(delay, "delay")
+    print(f"Clicking image at path: '{image_path}'...")
     delay if time.sleep(delay) else None
     image_center = locate_image(image_path)
     #move the mouse to the center of the button
@@ -106,21 +107,24 @@ def arrange_photos(img_list, *img_group):
     return result  
 
 
-# # check if workdaay remembers this device or not
-# def check_for_remember(remeber_device, login_page):
-#     remeber_device1 = f"./img/{remeber_device}"
-#     login_page1 = f"./img/{login_page}"
-#     remember = None
-#     login = None
+class Windows(object):
+    def __init__(self) -> None:
+        self.background = webview.create_window('BackGround', "https://blankwhitescreen.com/", resizable=False, on_top=False, frameless=True)
+        self.main = webview.create_window('Get To Work', "https://www.myworkday.com/wday/authgwy/tsys/login.htmld", resizable=False, width=500, height=700, on_top=True)
 
-#     timeout = time.time() + 30
-#     while (remember is None) and (login is None):
-#         remember = pg.locateCenterOnScreen(remeber_device1, confidence=.7)
-#         if remember: 
-#             return True
-#         login = pg.locateCenterOnScreen(login_page1, confidence=.7) 
-#         if login:
-#             return False
-#         if time.time() > timeout:
-#             print("Something went wrong", "check for remember timed out")
-#             break
+
+    def move(self, window1, window2):
+        if (not exists(cp["Done"])) or (not exists(cp["already checked in"])):
+            window1.move(0,0)
+            window1.resize(1920, 1080)
+        window2.move(610, 10)
+        window2.resize(800, 1000)
+
+    def destroy(self):
+        self.background.destroy()
+        self.main.destroy()
+
+    def start(self):
+        webview.start(self.move,(self.background,self.main))
+
+windows = Windows()
