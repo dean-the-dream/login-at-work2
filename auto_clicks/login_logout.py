@@ -1,7 +1,7 @@
 #############################################################################################
 # This module contains the procedurse to sign in or out
 ###############################################################################################
-import navigate_screen as ns
+import auto_clicks.navigate_screen as ns
 import gather_images as gi
 from time import sleep
 from screeninfo import get_monitors

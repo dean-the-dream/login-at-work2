@@ -3,7 +3,7 @@ from pyautogui import screenshot
 from creds import un, password, main_dir, bttn_dir, scrn_dir
 from time import sleep
 import pyscreenshot as ImageGrab
-import navigate_screen as ns
+import auto_clicks.navigate_screen as ns
 from os import path, mkdir
 from email_integration import get_time
 
